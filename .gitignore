@@ -1,0 +1,73 @@
+# =========================
+# Spring Boot + Maven
+# =========================
+financas-api/target/
+financas-api/.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+financas-api/*.log
+financas-api/logs/
+
+# IDEs
+financas-api/.idea/
+financas-api/.classpath
+financas-api/.project
+financas-api/.settings/
+
+# VSCode
+financas-api/.vscode/
+
+# =========================
+# React + Vite + TypeScript
+# =========================
+financas-webapp/node_modules/
+financas-webapp/dist/
+financas-webapp/.vite/
+
+# Build cache
+financas-webapp/.eslintcache
+financas-webapp/*.tsbuildinfo
+
+# =========================
+# Arquivos de ambiente
+# =========================
+*.env
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# =========================
+# Sistema operacional
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDEs (geral)
+# =========================
+.vscode/
+.idea/
+
+# Eclipse
+*.classpath
+*.project
+.settings/
+
+# IntelliJ
+*.iml
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Arquivos temporários
+# =========================
+*.tmp
+*.swp
