@@ -3,12 +3,7 @@ import type { AuthenticatedUser } from '../types/auth.types';
 const TOKEN_KEY = 'financas:token';
 const USER_KEY = 'financas:user';
 
-/**
- * Abstrai o mecanismo de persistência da sessão (atualmente localStorage).
- * Caso seja necessário trocar para sessionStorage, cookies, etc., basta
- * alterar este arquivo — o restante da aplicação não conhece o detalhe
- * de implementação.
- */
+// Serviço de armazenamento local (localStorage) para sessão do usuário.
 export const storageService = {
   getToken: (): string | null => localStorage.getItem(TOKEN_KEY),
 

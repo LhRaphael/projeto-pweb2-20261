@@ -6,11 +6,7 @@ import type {
   TransactionResponse,
 } from '../types/transaction.types';
 
-/**
- * Camada de serviço para transações. Ponto único de entrada para a
- * lógica de negócio relacionada a transações, mesmo que hoje delegue
- * diretamente à camada api/.
- */
+// Camada de serviços para transações, intermediando a API e os componentes/hooks.
 export const transactionService = {
   list: async (filters: TransactionFilters): Promise<Page<TransactionResponse>> => {
     return transactionsApi.getAll(filters);
