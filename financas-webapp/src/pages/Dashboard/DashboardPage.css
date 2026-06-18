@@ -1,2 +1,208 @@
 @charset "UTF-8";
 
+/* Container Geral do Dashboard */
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #1e293b;
+  padding: 0 0 40px 0;
+}
+
+
+
+/* Barra de Navegação Superior (Header) */
+.dashboard-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.dashboard-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+/* Links de Navegação */
+.nav-link {
+  color: #635bff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f0f0ff;
+}
+
+
+
+/* Botão de Sair */
+.logout-button {
+  background-color: transparent;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* Corpo Principal do Conteúdo */
+.dashboard-content {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Seções (Cards Maiores) */
+.dashboard-section {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.dashboard-section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #334155;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Grid de Resumo Financeiro (Saldo, Receitas, Despesas) */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 0;
+}
+
+/* Cartões de Métricas Individuais */
+.summary-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-card dt {
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-card dd {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  font-variant-numeric: tabular-nums; /* Evita que números fiquem desalinhados */
+}
+
+/* Cores Semânticas das Finanças */
+.summary-card.card-balance dd {
+  color: #0f172a; /* Saldo total em cor neutra forte */
+}
+
+.summary-card.card-income dd {
+  color: #16a34a; /* Verde para Receitas */
+}
+
+.summary-card.card-expense dd {
+  color: #dc2626; /* Vermelho para Despesas */
+}
+
+/* Lista de Transações Recentes */
+.transactions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.transaction-item:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transaction-main {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.transaction-meta {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.transaction-amount {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Classes utilitárias para o tipo da transação (opcional, caso aplique dinamicamente) */
+.amount-receita { color: #16a34a; }
+.amount-despesa { color: #dc2626; }
+
+/* Estados de Feedback (Loading / Error) */
+.status-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: #64748b;
+}
