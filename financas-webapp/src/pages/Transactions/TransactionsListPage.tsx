@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTransactions } from '../../hooks/useTransactions';
 import { useCategories } from '../../hooks/useCategories';
+import { formatCurrency } from '../../utils/formatters';
 import type { TransactionType } from '../../types/transaction.types';
 
 export function TransactionsListPage() {
@@ -75,7 +76,7 @@ export function TransactionsListPage() {
                   <td>{transaction.description}</td>
                   <td>{transaction.categoryName}</td>
                   <td>{transaction.type}</td>
-                  <td>{transaction.amount}</td>
+                  <td>{formatCurrency(transaction.amount)}</td>
                   <td>
                     <Link to={`/transactions/${transaction.id}/edit`}>Editar</Link>
                     <button onClick={() => removeTransaction(transaction.id)}>Excluir</button>

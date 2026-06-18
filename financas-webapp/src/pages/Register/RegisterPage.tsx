@@ -34,9 +34,10 @@ export function RegisterPage() {
       <label htmlFor="name">Nome</label>
       <input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
 
-      <label htmlFor="username">Usuário</label>
+      <label htmlFor="username">Email</label>
       <input
         id="username"
+        type="email"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { PrivateRoute } from './PrivateRoute';
+import { ProtectedRoute } from './ProtectedRoute';
 import { LoginPage } from '../pages/Login/LoginPage';
 import { RegisterPage } from '../pages/Register/RegisterPage';
 import { DashboardPage } from '../pages/Dashboard/DashboardPage';
@@ -8,7 +8,7 @@ import { TransactionFormPage } from '../pages/Transactions/TransactionFormPage';
 
 /**
  * Definição centralizada de rotas. Rotas privadas ficam agrupadas sob
- * o elemento PrivateRoute, que cuida do redirecionamento para /login
+ * o elemento ProtectedRoute, que cuida do redirecionamento para /login
  * quando não há sessão autenticada.
  */
 export function AppRoutes() {
@@ -18,7 +18,7 @@ export function AppRoutes() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        <Route element={<PrivateRoute />}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/transactions" element={<TransactionsListPage />} />
           <Route path="/transactions/new" element={<TransactionFormPage />} />

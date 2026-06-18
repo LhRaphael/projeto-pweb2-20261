@@ -1,62 +1,60 @@
-import { useCallback, useEffect, useState } from 'react';
-import { transactionService } from '../services/transactionService';
-import type { Page } from '../types/api.types';
-import type { TransactionFilters, TransactionResponse } from '../types/transaction.types';
-
-const DEFAULT_FILTERS: TransactionFilters = {
-  page: 0,
-  size: 10,
-};
-
-interface UseTransactionsResult {
-  page: Page<TransactionResponse> | null;
-  filters: TransactionFilters;
-  loading: boolean;
-  error: string | null;
-  setFilters: (filters: TransactionFilters) => void;
-  refresh: () => void;
-  removeTransaction: (id: number) => Promise<void>;
-}
+import { useCallback, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import {
+  fetchTransactions,
+  removeTransaction as removeTransactionThunk,
+  setFilters as setFiltersAction,
+  selectTransactionItems,
+  selectTransactionFilters,
+  selectTransactionPageMeta,
+  selectTransactionsStatus,
+  selectTransactionsError,
+} from '../store/slices/transactionsSlice';
+import type { TransactionFilters } from '../types/transaction.types';
 
 /**
- * Encapsula listagem, filtros, paginação e exclusão de transações.
- * Componentes de página apenas leem o estado e disparam ações, sem
- * conhecer detalhes de chamadas HTTP.
+ * RF02 — Encapsula listagem, filtros, paginação e exclusão de transações
+ * a partir do transactionsSlice. Refaz a busca automaticamente sempre
+ * que os filtros mudam, mantendo no estado apenas a página atual.
  */
-export function useTransactions(
-  initialFilters: TransactionFilters = DEFAULT_FILTERS,
-): UseTransactionsResult {
-  const [filters, setFilters] = useState<TransactionFilters>(initialFilters);
-  const [page, setPage] = useState<Page<TransactionResponse> | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchTransactions = useCallback(() => {
-    setLoading(true);
-    setError(null);
-    transactionService
-      .list(filters)
-      .then(setPage)
-      .catch(() => setError('Não foi possível carregar as transações.'))
-      .finally(() => setLoading(false));
-  }, [filters]);
+export function useTransactions() {
+  const dispatch = useAppDispatch();
+  const items = useAppSelector(selectTransactionItems);
+  const filters = useAppSelector(selectTransactionFilters);
+  const pageMeta = useAppSelector(selectTransactionPageMeta);
+  const status = useAppSelector(selectTransactionsStatus);
+  const error = useAppSelector(selectTransactionsError);
 
   useEffect(() => {
-    fetchTransactions();
-  }, [fetchTransactions]);
+    dispatch(fetchTransactions(filters));
+  }, [filters, dispatch]);
 
-  const removeTransaction = async (id: number): Promise<void> => {
-    await transactionService.remove(id);
-    fetchTransactions();
-  };
+  const setFilters = useCallback(
+    (next: TransactionFilters): void => {
+      dispatch(setFiltersAction(next));
+    },
+    [dispatch],
+  );
+
+  const refresh = useCallback((): void => {
+    dispatch(fetchTransactions(filters));
+  }, [dispatch, filters]);
+
+  const removeTransaction = useCallback(
+    async (id: number): Promise<void> => {
+      await dispatch(removeTransactionThunk(id)).unwrap();
+    },
+    [dispatch],
+  );
 
   return {
-    page,
+    // Mantém o mesmo formato de Page<TransactionResponse> usado pelas páginas.
+    page: { content: items, ...pageMeta },
     filters,
-    loading,
+    loading: status === 'loading',
     error,
     setFilters,
-    refresh: fetchTransactions,
+    refresh,
     removeTransaction,
   };
 }

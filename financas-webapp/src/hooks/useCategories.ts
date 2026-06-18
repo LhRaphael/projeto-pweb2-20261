@@ -1,42 +1,31 @@
-import { useEffect, useState } from 'react';
-import { categoryService } from '../services/categoryService';
-import type { CategoryResponse } from '../types/category.types';
-
-interface UseCategoriesResult {
-  categories: CategoryResponse[];
-  loading: boolean;
-  error: string | null;
-}
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import {
+  fetchCategories,
+  selectCategories,
+  selectCategoriesStatus,
+  selectCategoriesError,
+} from '../store/slices/categoriesSlice';
 
 /**
- * Encapsula o carregamento da lista de categorias, mantendo os
- * componentes de página livres de lógica de fetch/estado.
+ * RF02 — Garante que as categorias sejam carregadas (uma única vez) e
+ * expõe o estado do categoriesSlice para os componentes de página.
  */
-export function useCategories(): UseCategoriesResult {
-  const [categories, setCategories] = useState<CategoryResponse[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export function useCategories() {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(selectCategories);
+  const status = useAppSelector(selectCategoriesStatus);
+  const error = useAppSelector(selectCategoriesError);
 
   useEffect(() => {
-    let active = true;
+    if (status === 'idle') {
+      dispatch(fetchCategories());
+    }
+  }, [status, dispatch]);
 
-    setLoading(true);
-    categoryService
-      .getAll()
-      .then((data) => {
-        if (active) setCategories(data);
-      })
-      .catch(() => {
-        if (active) setError('Não foi possível carregar as categorias.');
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  return { categories, loading, error };
+  return {
+    categories,
+    loading: status === 'loading' || status === 'idle',
+    error,
+  };
 }

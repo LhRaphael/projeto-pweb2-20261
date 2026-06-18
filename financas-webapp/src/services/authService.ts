@@ -4,8 +4,8 @@ import type { AuthenticatedUser, LoginRequest, RegisterRequest } from '../types/
 
 /**
  * Camada de serviço (facade): orquestra a chamada à API de autenticação
- * com a persistência da sessão local. É essa camada que hooks e contexto
- * devem consumir — nunca diretamente o api/authApi.
+ * com a persistência da sessão local. É essa camada que o authSlice do
+ * Redux consome — nunca diretamente o api/authApi.
  */
 export const authService = {
   register: async (data: RegisterRequest): Promise<AuthenticatedUser> => {

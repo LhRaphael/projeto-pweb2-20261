@@ -1,8 +1,11 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCategories } from '../../hooks/useCategories';
+import { useAppDispatch } from '../../store/hooks';
+import { createTransaction, updateTransaction } from '../../store/slices/transactionsSlice';
 import { transactionService } from '../../services/transactionService';
 import { today } from '../../utils/dateUtils';
+import { validators } from '../../utils/validators';
 import type { TransactionRequest, TransactionType } from '../../types/transaction.types';
 
 const EMPTY_FORM: TransactionRequest = {
@@ -14,9 +17,28 @@ const EMPTY_FORM: TransactionRequest = {
   tag: '',
 };
 
+/**
+ * Validação explícita dos campos obrigatórios (RF02), independente da
+ * validação nativa do HTML — garante que o formulário não seja
+ * submetido com valor inválido, categoria não selecionada ou data vazia.
+ */
+function validateForm(form: TransactionRequest): string | null {
+  if (!validators.isPositiveNumber(form.amount)) {
+    return 'Informe um valor maior que zero.';
+  }
+  if (form.categoryId === 0) {
+    return 'Selecione uma categoria.';
+  }
+  if (!validators.isValidDate(form.date)) {
+    return 'Informe uma data válida.';
+  }
+  return null;
+}
+
 export function TransactionFormPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { categories } = useCategories();
 
   const isEditing = id !== undefined;
@@ -25,6 +47,9 @@ export function TransactionFormPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
+  // Carrega a transação a ser editada. Trata-se de uma leitura pontual,
+  // por isso não passa pelo transactionsSlice (que guarda apenas a
+  // página atual da listagem) — apenas pelo service.
   useEffect(() => {
     if (!isEditing) return;
 
@@ -53,14 +78,21 @@ export function TransactionFormPage() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
+
+    const validationError = validateForm(form);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     setError(null);
     setSubmitting(true);
 
     try {
       if (isEditing) {
-        await transactionService.update(Number(id), form);
+        await dispatch(updateTransaction({ id: Number(id), data: form })).unwrap();
       } else {
-        await transactionService.create(form);
+        await dispatch(createTransaction(form)).unwrap();
       }
       navigate('/transactions');
     } catch {
@@ -83,6 +115,7 @@ export function TransactionFormPage() {
         id="amount"
         type="number"
         step="0.01"
+        min="0.01"
         value={form.amount}
         onChange={(e) => updateField('amount', Number(e.target.value))}
         required

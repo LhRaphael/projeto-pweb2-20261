@@ -6,7 +6,7 @@ export interface TransactionResponse {
   type: TransactionType;
   categoryId: number;
   categoryName: string;
-  date: string; // ano-mes-dia
+  date: string; // yyyy-MM-dd
   description: string;
   tag: string;
 }
@@ -19,7 +19,7 @@ export interface TransactionRequest {
   amount: number;
   type: TransactionType;
   categoryId: number;
-  date: string; // ano-mes-dia
+  date: string; // yyyy-MM-dd
   description: string;
   tag: string;
 }
