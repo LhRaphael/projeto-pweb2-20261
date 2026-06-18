@@ -1,31 +1,36 @@
 @charset "UTF-8";
 
-/* Container Geral do Dashboard */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 .dashboard-container {
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: #0f172a;
   font-family: 'Inter', system-ui, sans-serif;
-  color: #1e293b;
+  color: #e2e8f0;
   padding: 0 0 40px 0;
 }
 
 
-
-/* Barra de Navegação Superior (Header) */
 .dashboard-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
   padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-header h1 {
   font-size: 20px;
   font-weight: 700;
-  color: #0f172a;
+  color: #f8fafc;
   margin: 0;
 }
 
@@ -36,10 +41,8 @@
 }
 
 
-
-/* Links de Navegação */
 .nav-link {
-  color: #635bff;
+  color: #818cf8;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
@@ -49,16 +52,14 @@
 }
 
 .nav-link:hover {
-  background-color: #f0f0ff;
+  background-color: rgba(129, 140, 248, 0.15);
 }
 
 
-
-/* Botão de Sair */
 .logout-button {
   background-color: transparent;
-  color: #64748b;
-  border: 1px solid #cbd5e1;
+  color: #94a3b8;
+  border: 1px solid #475569;
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 500;
@@ -68,12 +69,12 @@
 }
 
 .logout-button:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
-  border-color: #94a3b8;
+  background-color: #334155;
+  color: #f8fafc;
+  border-color: #64748b;
 }
 
-/* Corpo Principal do Conteúdo */
+
 .dashboard-content {
   max-width: 1200px;
   margin: 40px auto 0 auto;
@@ -83,24 +84,24 @@
   gap: 32px;
 }
 
-/* Seções (Cards Maiores) */
+
 .dashboard-section {
-  background: #ffffff;
+  background: #1e293b;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #334155;
   padding: 24px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-section h2 {
   font-size: 18px;
   font-weight: 700;
-  color: #334155;
+  color: #cbd5e1;
   margin-top: 0;
   margin-bottom: 20px;
 }
 
-/* Grid de Resumo Financeiro (Saldo, Receitas, Despesas) */
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -108,10 +109,10 @@
   margin: 0;
 }
 
-/* Cartões de Métricas Individuais */
+
 .summary-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: #0f172a;
+  border: 1px solid #334155;
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -122,7 +123,7 @@
 .summary-card dt {
   font-size: 14px;
   font-weight: 600;
-  color: #64748b;
+  color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -130,25 +131,25 @@
 .summary-card dd {
   font-size: 28px;
   font-weight: 700;
-  color: #0f172a;
+  color: #f8fafc;
   margin: 0;
-  font-variant-numeric: tabular-nums; /* Evita que números fiquem desalinhados */
+  font-variant-numeric: tabular-nums;
 }
 
-/* Cores Semânticas das Finanças */
+
 .summary-card.card-balance dd {
-  color: #0f172a; /* Saldo total em cor neutra forte */
+  color: #f8fafc;
 }
 
 .summary-card.card-income dd {
-  color: #16a34a; /* Verde para Receitas */
+  color: #34d399;
 }
 
 .summary-card.card-expense dd {
-  color: #dc2626; /* Vermelho para Despesas */
+  color: #f87171;
 }
 
-/* Lista de Transações Recentes */
+
 .transactions-list {
   list-style: none;
   padding: 0;
@@ -163,14 +164,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: #0f172a;
+  border: 1px solid #334155;
   border-radius: 8px;
   transition: transform 0.15s, border-color 0.15s;
 }
 
 .transaction-item:hover {
-  border-color: #cbd5e1;
+  border-color: #475569;
   transform: translateY(-1px);
 }
 
@@ -182,12 +183,12 @@
 
 .transaction-main {
   font-weight: 600;
-  color: #1e293b;
+  color: #f1f5f9;
 }
 
 .transaction-meta {
   font-size: 13px;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 .transaction-amount {
@@ -195,14 +196,14 @@
   font-weight: 700;
 }
 
-/* Classes utilitárias para o tipo da transação (opcional, caso aplique dinamicamente) */
-.amount-receita { color: #16a34a; }
-.amount-despesa { color: #dc2626; }
 
-/* Estados de Feedback (Loading / Error) */
+.amount-receita { color: #34d399; }
+.amount-despesa { color: #f87171; }
+
+
 .status-message {
   text-align: center;
   padding: 40px;
   font-size: 16px;
-  color: #64748b;
+  color: #94a3b8;
 }
