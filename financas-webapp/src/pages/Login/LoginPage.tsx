@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import './LoginPage.css';
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -27,35 +28,37 @@ export function LoginPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Entrar</h1>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
+        <h1>Entrar</h1>
 
-      <label htmlFor="username">Usuário</label>
-      <input
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
+        <label htmlFor="username">Usuário</label>
+        <input
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
 
-      <label htmlFor="password">Senha</label>
-      <input
-        id="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+        <label htmlFor="password">Senha</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-      {error && <p role="alert">{error}</p>}
+        {error && <p role="alert" className="error-message">{error}</p>}
 
-      <button type="submit" disabled={submitting}>
-        {submitting ? 'Entrando...' : 'Entrar'}
-      </button>
+        <button type="submit" disabled={submitting} className="submit-button">
+          {submitting ? 'Entrando...' : 'Entrar'}
+        </button>
 
-      <p>
-        Não tem conta? <Link to="/register">Cadastre-se</Link>
-      </p>
-    </form>
+        <p className="register-redirect">
+          Não tem conta? <Link to="/register">Cadastre-se</Link>
+        </p>
+      </form>
+    </div>
   );
 }

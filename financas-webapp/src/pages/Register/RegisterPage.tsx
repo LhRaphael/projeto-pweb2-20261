@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import './RegisterPage.css';
 
 export function RegisterPage() {
   const { register } = useAuth();
@@ -28,39 +29,46 @@ export function RegisterPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Criar conta</h1>
+    <div className="register-container">
+      <form onSubmit={handleSubmit} className="register-form">
+        <h1>Criar conta</h1>
 
-      <label htmlFor="name">Nome</label>
-      <input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+        <label htmlFor="name">Nome</label>
+        <input 
+          id="name" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          required 
+        />
 
-      <label htmlFor="username">Email</label>
-      <input
-        id="username"
-        type="email"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
+        <label htmlFor="username">Email</label>
+        <input
+          id="username"
+          type="email"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
 
-      <label htmlFor="password">Senha</label>
-      <input
-        id="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+        <label htmlFor="password">Senha</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-      {error && <p role="alert">{error}</p>}
+        {error && <p role="alert" className="error-message">{error}</p>}
 
-      <button type="submit" disabled={submitting}>
-        {submitting ? 'Criando conta...' : 'Criar conta'}
-      </button>
+        <button type="submit" disabled={submitting} className="submit-button">
+          {submitting ? 'Criando conta...' : 'Criar conta'}
+        </button>
 
-      <p>
-        Já tem conta? <Link to="/login">Entrar</Link>
-      </p>
-    </form>
+        <p className="login-redirect">
+          Já tem conta? <Link to="/login">Entrar</Link>
+        </p>
+      </form>
+    </div>
   );
 }
