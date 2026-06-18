@@ -7,6 +7,7 @@ import { transactionService } from '../../services/transactionService';
 import { today } from '../../utils/dateUtils';
 import { validators } from '../../utils/validators';
 import type { TransactionRequest, TransactionType } from '../../types/transaction.types';
+import './TransactionFormPage.css';
 
 const EMPTY_FORM: TransactionRequest = {
   amount: 0,
@@ -107,71 +108,73 @@ export function TransactionFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>{isEditing ? 'Editar transação' : 'Nova transação'}</h1>
+    <div className="transaction-form-container">
+      <form onSubmit={handleSubmit}>
+        <h1>{isEditing ? 'Editar transação' : 'Nova transação'}</h1>
 
-      <label htmlFor="amount">Valor</label>
-      <input
-        id="amount"
-        type="number"
-        step="0.01"
-        min="0.01"
-        value={form.amount}
-        onChange={(e) => updateField('amount', Number(e.target.value))}
-        required
-      />
+        <label htmlFor="amount">Valor</label>
+        <input
+          id="amount"
+          type="number"
+          step="0.01"
+          min="0.01"
+          value={form.amount}
+          onChange={(e) => updateField('amount', Number(e.target.value))}
+          required
+        />
 
-      <label htmlFor="type">Tipo</label>
-      <select
-        id="type"
-        value={form.type}
-        onChange={(e) => updateField('type', e.target.value as TransactionType)}
-      >
-        <option value="INCOME">Receita</option>
-        <option value="EXPENSE">Despesa</option>
-      </select>
+        <label htmlFor="type">Tipo</label>
+        <select
+          id="type"
+          value={form.type}
+          onChange={(e) => updateField('type', e.target.value as TransactionType)}
+        >
+          <option value="INCOME">Receita</option>
+          <option value="EXPENSE">Despesa</option>
+        </select>
 
-      <label htmlFor="categoryId">Categoria</label>
-      <select
-        id="categoryId"
-        value={form.categoryId}
-        onChange={(e) => updateField('categoryId', Number(e.target.value))}
-        required
-      >
-        <option value={0} disabled>
-          Selecione...
-        </option>
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
+        <label htmlFor="categoryId">Categoria</label>
+        <select
+          id="categoryId"
+          value={form.categoryId}
+          onChange={(e) => updateField('categoryId', Number(e.target.value))}
+          required
+        >
+          <option value={0} disabled>
+            Selecione...
           </option>
-        ))}
-      </select>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
 
-      <label htmlFor="date">Data</label>
-      <input
-        id="date"
-        type="date"
-        value={form.date}
-        onChange={(e) => updateField('date', e.target.value)}
-        required
-      />
+        <label htmlFor="date">Data</label>
+        <input
+          id="date"
+          type="date"
+          value={form.date}
+          onChange={(e) => updateField('date', e.target.value)}
+          required
+        />
 
-      <label htmlFor="description">Descrição</label>
-      <input
-        id="description"
-        value={form.description}
-        onChange={(e) => updateField('description', e.target.value)}
-      />
+        <label htmlFor="description">Descrição</label>
+        <input
+          id="description"
+          value={form.description}
+          onChange={(e) => updateField('description', e.target.value)}
+        />
 
-      <label htmlFor="tag">Tag</label>
-      <input id="tag" value={form.tag} onChange={(e) => updateField('tag', e.target.value)} />
+        <label htmlFor="tag">Tag</label>
+        <input id="tag" value={form.tag} onChange={(e) => updateField('tag', e.target.value)} />
 
-      {error && <p role="alert">{error}</p>}
+        {error && <p role="alert">{error}</p>}
 
-      <button type="submit" disabled={submitting}>
-        {submitting ? 'Salvando...' : 'Salvar'}
-      </button>
-    </form>
+        <button type="submit" disabled={submitting}>
+          {submitting ? 'Salvando...' : 'Salvar'}
+        </button>
+      </form>
+    </div>
   );
 }

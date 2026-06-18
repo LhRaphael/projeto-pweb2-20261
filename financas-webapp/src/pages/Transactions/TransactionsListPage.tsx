@@ -3,6 +3,7 @@ import { useTransactions } from '../../hooks/useTransactions';
 import { useCategories } from '../../hooks/useCategories';
 import { formatCurrency } from '../../utils/formatters';
 import type { TransactionType } from '../../types/transaction.types';
+import './TransactionsListPage.css';
 
 export function TransactionsListPage() {
   const { page, filters, setFilters, loading, error, removeTransaction } = useTransactions();
@@ -29,7 +30,7 @@ export function TransactionsListPage() {
   };
 
   return (
-    <div>
+    <div className="transactions-list-container">
       <h1>Transações</h1>
 
       <Link to="/transactions/new">Nova transação</Link>

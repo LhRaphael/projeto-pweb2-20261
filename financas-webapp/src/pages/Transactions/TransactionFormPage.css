@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.transaction-form-container {
+  min-height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  padding: 20px;
+}
+
+
+.transaction-form-container form {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.transaction-form-container h1 {
+  color: #f8fafc;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.transaction-form-container label {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+
+.transaction-form-container input,
+.transaction-form-container select {
+  background-color: #0f172a;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+
+.transaction-form-container select option {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.transaction-form-container input:focus,
+.transaction-form-container select:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+
+
+.transaction-form-container [role="alert"] {
+  background-color: #4c1d1d;
+  color: #fca5a5;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 16px;
+  border-left: 4px solid #ef4444;
+}
+
+
+.transaction-form-container button[type="submit"] {
+  background-color: #6366f1;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.transaction-form-container button[type="submit"]:hover:not(:disabled) {
+  background-color: #4f46e5;
+}
+
+.transaction-form-container button[type="submit"]:disabled {
+  background-color: #475569;
+  color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

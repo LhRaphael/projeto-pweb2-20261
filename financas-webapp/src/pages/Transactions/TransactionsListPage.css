@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.transactions-list-container {
+  margin: 0 auto;
+  padding: 32px 20px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0f172a;
+  min-height: 100vh;
+  color: #e2e8f0;
+}
+
+.transactions-list-container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.transactions-list-container > a[href="/transactions/new"] {
+  display: inline-block;
+  background-color: #6366f1;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 28px;
+  transition: background-color 0.2s;
+}
+
+.transactions-list-container > a[href="/transactions/new"]:hover {
+  background-color: #4f46e5;
+}
+
+
+.transactions-list-container > div:first-of-type {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  padding: 16px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.transactions-list-container label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.transactions-list-container select {
+  background-color: #0f172a;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+
+.transactions-list-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.transactions-list-container th {
+  background-color: #0f172a;
+  color: #94a3b8;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #334155;
+}
+
+.transactions-list-container td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #334155;
+  color: #cbd5e1;
+  font-size: 15px;
+}
+
+.transactions-list-container tr:last-child td {
+  border-bottom: none;
+}
+
+
+.transactions-list-container td:nth-child(5) {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+
+.transactions-list-container td:contains("INCOME"), 
+.transactions-list-container tr td:has(span:contains("INCOME")) {
+  color: #34d399;
+}
+
+
+.transactions-list-container td a {
+  color: #818cf8;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.transactions-list-container td a:hover {
+  text-decoration: underline;
+}
+
+.transactions-list-container td button {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+
+.transactions-list-container td button:hover {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
+
+.transactions-list-container > div:last-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.transactions-list-container > div:last-of-type button {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.transactions-list-container > div:last-of-type button:hover:not(:disabled) {
+  background-color: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+.transactions-list-container > div:last-of-type button:disabled {
+  background-color: #0f172a;
+  color: #475569;
+  border-color: #334155;
+  cursor: not-allowed;
+}
+
+.transactions-list-container > div:last-of-type span {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* Feedbacks de Status */
+.transactions-list-container p {
+  text-align: center;
+  padding: 20px;
+  color: #94a3b8;
+}
