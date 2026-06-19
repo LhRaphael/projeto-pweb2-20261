@@ -2,7 +2,7 @@
 
 .transactions-list-container {
   margin: 0 auto;
-  padding: 32px 20px;
+  padding: 32px 84px;
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-bg);
   min-height: 100vh;
