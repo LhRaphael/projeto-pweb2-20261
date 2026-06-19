@@ -1,0 +1,21 @@
+.protected-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.protected-content {
+  width: 100%
+}
+
+.menu-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  z-index: 1000;
+
+  width: 40px;
+  height: 40px;
+
+  cursor: pointer;
+}

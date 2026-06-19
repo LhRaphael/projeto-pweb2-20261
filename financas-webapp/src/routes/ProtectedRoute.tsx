@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { ProtectedLayout } from '../components/ProtectedLayout/ProtectedLayout';
 
 /**
  * RF01 — Bloqueia o acesso a rotas privadas enquanto o usuário não
@@ -14,5 +15,11 @@ export function ProtectedRoute() {
     return null;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+  return isAuthenticated ? (
+    <ProtectedLayout>
+      <Outlet />
+    </ProtectedLayout>
+  ) : (
+    <Navigate to="/login" replace />
+  );
 }
