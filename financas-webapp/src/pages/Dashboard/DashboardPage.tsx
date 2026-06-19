@@ -56,9 +56,8 @@ export function DashboardPage() {
               ) : (
                 <ul className="transactions-list">
                   {recent.map((transaction) => {
-                    // Descobre se a transação é receita ou despesa para aplicar a cor correspondente
                     const isIncome = transaction.type?.toUpperCase() === 'RECEITA' || transaction.type?.toUpperCase() === 'INCOME';
-                    
+
                     return (
                       <li key={transaction.id} className="transaction-item">
                         <div className="transaction-info">

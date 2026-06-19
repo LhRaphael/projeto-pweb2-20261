@@ -5,45 +5,49 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #0f172a;
+  background-color: var(--color-bg);
   font-family: 'Inter', system-ui, sans-serif;
   padding: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .register-form {
-  background: #1e293b;
+  background: var(--color-surface);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px var(--color-shadow-card);
   width: 100%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease;
 }
 
 .register-form h1 {
   margin-bottom: 24px;
-  color: #f8fafc;
+  color: var(--color-text-strong);
   font-size: 28px;
   font-weight: 700;
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 .register-form label {
   font-size: 14px;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--color-text-muted);
   margin-bottom: 6px;
+  transition: color 0.3s ease;
 }
 
 .register-form input {
   padding: 12px 16px;
   font-size: 16px;
-  border: 1px solid #475569;
+  border: 1px solid var(--color-border);
   margin-bottom: 20px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: #0f172a;
-  color: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--color-bg);
+  color: var(--color-text-strong);
 }
 
 .register-form input:focus {
@@ -52,45 +56,11 @@
   box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
 }
 
-.error-message {
-  background-color: #4c1d1d;
-  color: #fca5a5;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-bottom: 16px;
-  text-align: center;
-  border-left: 4px solid #ef4444;
-}
-
-.submit-button {
-  background-color: #6366f1;
-  color: white;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 8px;
-}
-
-.submit-button:hover:not(:disabled) {
-  background-color: #4f46e5;
-}
-
-.submit-button:disabled {
-  background-color: #334155;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
 .login-redirect {
   margin-top: 24px;
   text-align: center;
   font-size: 14px;
-  color: #94a3b8;
+  color: var(--color-text-muted);
 }
 
 .login-redirect a {

@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/* ── Tokens: tema escuro (padrão) ────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --color-bg:          #0f172a;
+  --color-surface:     #1e293b;
+  --color-border:      #334155;
+  --color-text:        #e2e8f0;
+  --color-text-strong: #f8fafc;
+  --color-text-muted:  #94a3b8;
+  --color-text-mid:    #cbd5e1;
+  --color-text-item:   #f1f5f9;
+  --color-shadow-hd:   rgba(0, 0, 0, 0.2);
+  --color-shadow-card: rgba(0, 0, 0, 0.2);
+  --color-hover-item:  #475569;
+  --toggle-track:      #14203c;
+  --toggle-knob:       #111210;
+  --knob-offset:       27px;
+}
+
+/* ── Tokens: tema claro ──────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg:          #f1f5f9;
+  --color-surface:     #ffffff;
+  --color-border:      #e2e8f0;
+  --color-text:        #334155;
+  --color-text-strong: #0f172a;
+  --color-text-muted:  #64748b;
+  --color-text-mid:    #475569;
+  --color-text-item:   #1e293b;
+  --color-shadow-hd:   rgba(0, 0, 0, 0.06);
+  --color-shadow-card: rgba(0, 0, 0, 0.06);
+  --color-hover-item:  #cbd5e1;
+  --toggle-track:      #D4D0C8;
+  --toggle-knob:       #ffffff;
+  --knob-offset:       3px;
+}
+
+/* ── Reset mínimo ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Botão flutuante de tema ─────────────────────────────── */
+.theme-toggle-fab {
+  position: fixed;
+  top: 72px;        /* logo abaixo da header (~56px) */
+  right: 24px;
+  z-index: 999;
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  background-color: var(--toggle-track);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle-fab:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.theme-toggle-fab:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+}
+
+.theme-toggle-fab__knob {
+  position: absolute;
+  top: 3px;
+  left: var(--knob-offset);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--toggle-knob);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition:
+    left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-fab,
+  .theme-toggle-fab__knob {
+    transition: none;
+  }
+}
