@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.goals-list-container {
+  margin: 0 auto;
+  padding: 32px 84px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.goals-list-container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-strong);
+  margin-top: 0;
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+.goals-list-container > a[href="/goals/new"] {
+  display: inline-block;
+  background-color: #6366f1;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 28px;
+  transition: background-color 0.2s;
+}
+
+.goals-list-container > a[href="/goals/new"]:hover {
+  background-color: #4f46e5;
+}
+
+.goals-list-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.goals-list-container th {
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.goals-list-container td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-mid);
+  font-size: 15px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.goals-list-container tr:last-child td {
+  border-bottom: none;
+}
+
+.goals-list-container td:nth-child(2) {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.goals-list-container td a {
+  color: #818cf8;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 16px;
+  font-size: 14px;
+}
+
+.goals-list-container td a:hover {
+  text-decoration: underline;
+}
+
+.goals-list-container td button {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+
+.goals-list-container td button:hover {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
+.goals-list-container p {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-text-muted);
+  transition: color 0.3s ease;
+}
+
+.goals-list-container [role='alert'] {
+  background-color: #4c1d1d;
+  color: #fca5a5;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 4px solid #ef4444;
+}

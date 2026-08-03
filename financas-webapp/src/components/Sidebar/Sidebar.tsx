@@ -38,6 +38,14 @@ export function Sidebar({
           Nova Transação
         </NavLink>
 
+        <NavLink to="/goals" className="sidebar-link">
+          Metas
+        </NavLink>
+
+        <NavLink to="/goals/new" className="sidebar-link">
+          Nova Meta
+        </NavLink>
+
         <button className="sidebar-link sidebar-logout" onClick={logout}>
           Sair
         </button>
