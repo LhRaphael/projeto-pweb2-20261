@@ -12,4 +12,8 @@ export const ENDPOINTS = {
     base: '/transactions',
     byId: (id: number) => `/transactions/${id}`,
   },
+  goals: {
+    base: '/goals',
+    byId: (id: number) => `/goals/${id}`,
+  },
 } as const;

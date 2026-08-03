@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
 import categoriesReducer from './slices/categoriesSlice';
 import transactionsReducer from './slices/transactionsSlice';
+import goalsReducer from './slices/goalsSlice';
 
 /**
  * Store global da aplicação. Cada slice corresponde a um domínio,
@@ -15,6 +16,7 @@ export const store = configureStore({
     auth: authReducer,
     categories: categoriesReducer,
     transactions: transactionsReducer,
+    goals: goalsReducer,
   },
 });
 
