@@ -4,7 +4,7 @@ import { store } from './store/store';
 import { useAppDispatch } from './store/hooks';
 import { restoreSession } from './store/slices/authSlice';
 import { AppRoutes } from './routes/AppRoutes';
-import { ThemeProvider, useTheme } from './context/ThemeContext.tsx';
+import { ThemeProvider, useTheme } from './context/themeContext.tsx';
 import './index.css';
 
 /**
