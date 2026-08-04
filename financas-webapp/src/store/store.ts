@@ -3,6 +3,7 @@ import authReducer from './slices/authSlice';
 import categoriesReducer from './slices/categoriesSlice';
 import transactionsReducer from './slices/transactionsSlice';
 import goalsReducer from './slices/goalsSlice';
+import spendingLimitsReducer from './slices/spendingLimitsSlice';
 
 /**
  * Store global da aplicação. Cada slice corresponde a um domínio,
@@ -17,6 +18,7 @@ export const store = configureStore({
     categories: categoriesReducer,
     transactions: transactionsReducer,
     goals: goalsReducer,
+    spendingLimits: spendingLimitsReducer,
   },
 });
 

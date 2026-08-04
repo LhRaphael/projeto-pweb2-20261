@@ -7,6 +7,7 @@ import { TransactionsListPage } from '../pages/Transactions/TransactionsListPage
 import { TransactionFormPage } from '../pages/Transactions/TransactionFormPage';
 import { GoalsListPage } from '../pages/Goals/GoalsListPage';
 import { GoalFormPage } from '../pages/Goals/GoalFormPage';
+import { SpendingLimitsPage } from '../pages/SpendingLimits/SpendingLimitsPage';
 
 /**
  * Definição centralizada de rotas. Rotas privadas ficam agrupadas sob
@@ -28,6 +29,7 @@ export function AppRoutes() {
           <Route path="/goals" element={<GoalsListPage />} />
           <Route path="/goals/new" element={<GoalFormPage />} />
           <Route path="/goals/:id/edit" element={<GoalFormPage />} />
+          <Route path="/spending-limits" element={<SpendingLimitsPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

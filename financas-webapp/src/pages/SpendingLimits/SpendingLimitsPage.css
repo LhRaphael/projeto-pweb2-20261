@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+.spending-limits-container {
+  margin: 0 auto;
+  padding: 32px 84px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.spending-limits-container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-strong);
+  margin-top: 0;
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+.spending-limit-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 28px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.spending-limit-form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.spending-limit-form select,
+.spending-limit-form input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.spending-limit-form button {
+  background-color: #6366f1;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.spending-limit-form button:hover {
+  background-color: #4f46e5;
+}
+
+.spending-limit-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spending-limit-form [role='alert'] {
+  flex-basis: 100%;
+  background-color: #4c1d1d;
+  color: #fca5a5;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 4px solid #ef4444;
+}
+
+.spending-limits-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spending-limit-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.spending-limit-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.spending-limit-category {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text-strong);
+}
+
+.spending-limit-item-header button {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+
+.spending-limit-item-header button:hover {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
+.limit-progress-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--color-bg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.limit-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.limit-progress-bar--ok {
+  background-color: #22c55e;
+}
+
+.limit-progress-bar--warning {
+  background-color: #eab308;
+}
+
+.limit-progress-bar--danger {
+  background-color: #ef4444;
+}
+
+.spending-limit-item-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.spending-limits-container > p {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-text-muted);
+}
