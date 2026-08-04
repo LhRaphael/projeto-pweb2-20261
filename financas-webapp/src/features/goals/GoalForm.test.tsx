@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import GoalForm from './GoalForm';
 import goalsReducer from './goalsSlice';
 
@@ -35,7 +35,7 @@ describe('GoalForm Component', () => {
 
   it('deve preencher e submeter o formulário com sucesso', async () => {
     const user = userEvent.setup();
-    const { store } = renderForm();
+    renderForm();
 
     const nameInput = screen.getByLabelText(/nome/i);
     const amountInput = screen.getByLabelText(/valor/i);

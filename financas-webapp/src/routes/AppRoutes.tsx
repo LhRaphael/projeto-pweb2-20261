@@ -9,12 +9,35 @@ import { GoalsListPage } from '../pages/Goals/GoalsListPage';
 import { GoalFormPage } from '../pages/Goals/GoalFormPage';
 import { SpendingLimitsPage } from '../pages/SpendingLimits/SpendingLimitsPage';
 
+const MICROFRONTEND_BASE_URL = {
+  goals: '/src/microfrontends/goals/index.html',
+  spendingLimits: '/src/microfrontends/spending-limits/index.html',
+};
+
 /**
  * Definição centralizada de rotas. Rotas privadas ficam agrupadas sob
  * o elemento ProtectedRoute, que cuida do redirecionamento para /login
  * quando não há sessão autenticada.
  */
+function mountMicrofrontends(): void {
+  const mountFromUrl = (name: keyof typeof MICROFRONTEND_BASE_URL, container: HTMLElement | null) => {
+    if (!container) {
+      return;
+    }
+
+    const url = MICROFRONTEND_BASE_URL[name];
+    container.dataset.microfrontend = name;
+    container.dataset.source = url;
+    container.innerHTML = `<p>Microfrontend carregado em ${url}</p>`;
+  };
+
+  mountFromUrl('goals', document.getElementById('mf-goals'));
+  mountFromUrl('spendingLimits', document.getElementById('mf-spending-limits'));
+}
+
 export function AppRoutes() {
+  mountMicrofrontends();
+
   return (
     <BrowserRouter>
       <Routes>

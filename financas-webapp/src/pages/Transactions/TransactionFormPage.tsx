@@ -1,11 +1,14 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCategories } from '../../hooks/useCategories';
+import { useSpendingLimits } from '../../hooks/useSpendingLimits';
 import { useAppDispatch } from '../../store/hooks';
 import { createTransaction, updateTransaction } from '../../store/slices/transactionsSlice';
 import { transactionService } from '../../services/transactionService';
 import { today } from '../../utils/dateUtils';
 import { validators } from '../../utils/validators';
+import { buildSpendingLimitAlert } from '../../utils/spendingLimitAlerts';
+import { showSpendingLimitNotification } from '../../utils/notifications';
 import type { TransactionRequest, TransactionType } from '../../types/transaction.types';
 import './TransactionFormPage.css';
 
@@ -41,12 +44,14 @@ export function TransactionFormPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { categories } = useCategories();
+  const { spendingStatus } = useSpendingLimits();
 
   const isEditing = id !== undefined;
   const [form, setForm] = useState<TransactionRequest>(EMPTY_FORM);
   const [loading, setLoading] = useState(isEditing);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   // Carrega a transação a ser editada. Trata-se de uma leitura pontual,
   // por isso não passa pelo transactionsSlice (que guarda apenas a
@@ -76,6 +81,34 @@ export function TransactionFormPage() {
   ): void => {
     setForm((current) => ({ ...current, [field]: value }));
   };
+
+  const selectedCategoryAlert = useMemo(() => {
+    if (form.type !== 'EXPENSE' || form.categoryId === 0) {
+      return null;
+    }
+
+    const status = spendingStatus.find((item) => item.categoryId === form.categoryId);
+    if (!status) {
+      return null;
+    }
+
+    return buildSpendingLimitAlert({
+      categoryName: status.categoryName,
+      spent: status.spent,
+      limitAmount: status.limitAmount,
+      percentUsed: status.percentUsed,
+    });
+  }, [form.categoryId, form.type, spendingStatus]);
+
+  useEffect(() => {
+    if (!selectedCategoryAlert) {
+      setAlertMessage(null);
+      return;
+    }
+
+    setAlertMessage(selectedCategoryAlert.message);
+    void showSpendingLimitNotification(selectedCategoryAlert);
+  }, [selectedCategoryAlert]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
@@ -170,6 +203,11 @@ export function TransactionFormPage() {
         <input id="tag" value={form.tag} onChange={(e) => updateField('tag', e.target.value)} />
 
         {error && <p role="alert">{error}</p>}
+        {alertMessage && (
+          <p role="status" className="transaction-limit-alert">
+            {alertMessage}
+          </p>
+        )}
 
         <button type="submit" disabled={submitting}>
           {submitting ? 'Salvando...' : 'Salvar'}

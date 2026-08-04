@@ -12,7 +12,7 @@ export function ProtectedRoute() {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
-    return null;
+    return <p>Carregando sessão...</p>;
   }
 
   return isAuthenticated ? (
