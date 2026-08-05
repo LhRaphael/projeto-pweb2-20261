@@ -1,14 +1,11 @@
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import { SpendingLimitsPage } from '../pages/SpendingLimits/SpendingLimitsPage';
-import { store } from '../store/store';
+import { MicrofrontendFrame } from './MicrofrontendFrame';
 
+/**
+ * Ponto de integração do microfrontend de Limites de Gastos (RF06) no host.
+ * Implementação isolada em `src/microfrontends/spending-limits/main.tsx`.
+ */
 export function SpendingLimitsMicrofrontend() {
   return (
-    <Provider store={store}>
-      <MemoryRouter>
-        <SpendingLimitsPage />
-      </MemoryRouter>
-    </Provider>
+    <MicrofrontendFrame src="/src/microfrontends/spending-limits/index.html" label="Limites de Gastos" />
   );
 }

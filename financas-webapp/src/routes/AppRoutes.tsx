@@ -5,39 +5,23 @@ import { RegisterPage } from '../pages/Register/RegisterPage';
 import { DashboardPage } from '../pages/Dashboard/DashboardPage';
 import { TransactionsListPage } from '../pages/Transactions/TransactionsListPage';
 import { TransactionFormPage } from '../pages/Transactions/TransactionFormPage';
-import { GoalsListPage } from '../pages/Goals/GoalsListPage';
-import { GoalFormPage } from '../pages/Goals/GoalFormPage';
-import { SpendingLimitsPage } from '../pages/SpendingLimits/SpendingLimitsPage';
-
-const MICROFRONTEND_BASE_URL = {
-  goals: '/src/microfrontends/goals/index.html',
-  spendingLimits: '/src/microfrontends/spending-limits/index.html',
-};
+import { GoalsMicrofrontend } from '../microfrontends/GoalsMicrofrontend';
+import { SpendingLimitsMicrofrontend } from '../microfrontends/SpendingLimitsMicrofrontend';
 
 /**
  * Definição centralizada de rotas. Rotas privadas ficam agrupadas sob
  * o elemento ProtectedRoute, que cuida do redirecionamento para /login
  * quando não há sessão autenticada.
+ *
+ * RF07 — Metas (/goals/*) e Limites de Gastos (/spending-limits) não são
+ * mais renderizadas diretamente pelo host: cada uma é um microfrontend
+ * isolado (bundle Vite próprio, ver `vite.config.ts`), composto em
+ * runtime via <iframe> (`GoalsMicrofrontend` / `SpendingLimitsMicrofrontend`).
+ * A navegação interna entre listagem/criação/edição de metas acontece
+ * dentro do próprio módulo (MemoryRouter em `microfrontends/goals/main.tsx`),
+ * por isso a rota do host usa um wildcard (`/goals/*`).
  */
-function mountMicrofrontends(): void {
-  const mountFromUrl = (name: keyof typeof MICROFRONTEND_BASE_URL, container: HTMLElement | null) => {
-    if (!container) {
-      return;
-    }
-
-    const url = MICROFRONTEND_BASE_URL[name];
-    container.dataset.microfrontend = name;
-    container.dataset.source = url;
-    container.innerHTML = `<p>Microfrontend carregado em ${url}</p>`;
-  };
-
-  mountFromUrl('goals', document.getElementById('mf-goals'));
-  mountFromUrl('spendingLimits', document.getElementById('mf-spending-limits'));
-}
-
 export function AppRoutes() {
-  mountMicrofrontends();
-
   return (
     <BrowserRouter>
       <Routes>
@@ -49,10 +33,8 @@ export function AppRoutes() {
           <Route path="/transactions" element={<TransactionsListPage />} />
           <Route path="/transactions/new" element={<TransactionFormPage />} />
           <Route path="/transactions/:id/edit" element={<TransactionFormPage />} />
-          <Route path="/goals" element={<GoalsListPage />} />
-          <Route path="/goals/new" element={<GoalFormPage />} />
-          <Route path="/goals/:id/edit" element={<GoalFormPage />} />
-          <Route path="/spending-limits" element={<SpendingLimitsPage />} />
+          <Route path="/goals/*" element={<GoalsMicrofrontend />} />
+          <Route path="/spending-limits" element={<SpendingLimitsMicrofrontend />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
