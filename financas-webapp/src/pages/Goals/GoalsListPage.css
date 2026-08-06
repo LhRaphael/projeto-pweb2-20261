@@ -13,10 +13,13 @@
 .goals-list-container h1 {
   font-size: 28px;
   font-weight: 700;
-  color: var(--color-text-strong);
+  letter-spacing: -0.01em;
   margin-top: 0;
   margin-bottom: 24px;
-  transition: color 0.3s ease;
+  background: linear-gradient(90deg, #818cf8, #6366f1 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .goals-list-container > a[href="/goals/new"] {
@@ -29,11 +32,14 @@
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 28px;
-  transition: background-color 0.2s;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .goals-list-container > a[href="/goals/new"]:hover {
   background-color: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
 }
 
 .goals-list-container table {
@@ -41,9 +47,12 @@
   border-collapse: collapse;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #818cf8, #6366f1 60%) 1;
   overflow: hidden;
   margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px var(--color-shadow-card);
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -66,6 +75,14 @@
   color: var(--color-text-mid);
   font-size: 15px;
   transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.goals-list-container tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.goals-list-container tbody tr:hover {
+  background-color: var(--color-hover-item);
 }
 
 .goals-list-container tr:last-child td {
@@ -118,4 +135,48 @@
   border-radius: 8px;
   text-align: center;
   border-left: 4px solid #ef4444;
+}
+
+/* ── Barra de progresso da meta ──────────────────────────── */
+.goal-progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.goal-progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.goal-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.goal-progress-bar--ok {
+  background: linear-gradient(90deg, #818cf8, #6366f1);
+}
+
+.goal-progress-bar--warning {
+  background-color: #eab308;
+}
+
+.goal-progress-bar--complete {
+  background-color: #22c55e;
+}
+
+.goal-progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  min-width: 34px;
+  text-align: right;
 }

@@ -3,11 +3,34 @@
   height: 100%;
   min-height: calc(100vh - 32px);
   display: flex;
+  background-color: var(--color-bg);
+  transition: background-color 0.3s ease;
 }
 
 .mf-frame-loading {
   margin: auto;
-  color: var(--color-text-strong);
+  color: var(--color-text-muted);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mf-frame-loading::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-top-color: #6366f1;
+  animation: mf-frame-spin 0.7s linear infinite;
+}
+
+@keyframes mf-frame-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .mf-frame-iframe {
@@ -15,4 +38,10 @@
   min-height: calc(100vh - 32px);
   border: none;
   flex: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-frame-loading::before {
+    animation: none;
+  }
 }
